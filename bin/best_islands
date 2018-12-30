@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require './lib/best_islands'
+
+CLI.new.greeting
