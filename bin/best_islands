@@ -2,4 +2,6 @@
 
 require './lib/best_islands'
 
-Scraper.new.scrape_page
+#Scraper.new.scrape_page
+
+CLI.new.call

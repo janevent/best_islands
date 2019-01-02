@@ -1,4 +1,4 @@
-# require 'pry'
+require 'pry'
 class Scraper
   def scrape_page
     html = open("https://www.islands.com/top-20-best-islands-to-live-on/")
@@ -8,7 +8,8 @@ class Scraper
   def scrape_island_attributes
     names = scrape_page.css(".caption span")
     names.each do |name|
-      island = Island.new 
+      binding.pry
+      island = Island.new(name.text) 
       island.island_name = name.text
     end
     scrape_page.css(".list").each_with_index do |list, index|
