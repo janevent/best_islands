@@ -11,4 +11,8 @@ class Island
     @@all 
   end
   
+  def self.find(id)
+    self.all[id.to_i -1]
+  end
+  
 end
