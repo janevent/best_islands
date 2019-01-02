@@ -32,4 +32,8 @@ class Scraper
     end
   end
   
+  def self.scrape_for_disclaimer
+    scrape_page.css("em").text
+  end
+  
 end

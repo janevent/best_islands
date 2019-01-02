@@ -1,7 +1,6 @@
 class CLI 
   def call
-    list_island_names
-    list_island_facts
+    greeting
   end 
   
   def greeting
@@ -16,8 +15,11 @@ class CLI
       if input.to_i > 0 && input.to_i < Island.all.length
         list_island_facts(input)
       end
+      puts "If you would like to view the disclaimer type 'disclaimer'."
+      if input == "disclaimer"
+        disclaimer 
+      end
       puts "If you would like to exit, type 'exit'."
-        
       input = gets.chomp
     end
   end
@@ -37,6 +39,9 @@ class CLI
     puts "The starting price for a home: #{isl.home_price}"
     puts "The cost of a gallon of milk: #{isl.cost_of_milk}"
   end
-    
   
+  def disclaimer
+    Scraper.scrape_for_disclaimer 
+  end
+    
 end
