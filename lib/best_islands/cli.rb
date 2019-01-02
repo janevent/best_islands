@@ -1,5 +1,6 @@
 class CLI 
-  def greeting 
-    puts "Hello World"
+  def call
+    list_island_names
+    list_island_facts
   end 
 end
