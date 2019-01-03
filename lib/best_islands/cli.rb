@@ -27,13 +27,13 @@ class CLI
   
   def list_island_names
     Island.all.each_with_index do |island, index|
-      puts "#{index + 1}. #{island.island_name}"
+      puts "#{index + 1}. #{island.name}"
     end
   end
   
   def list_island_facts(id)
     isl = Island.all[id.to_i -1]
-    puts "#{id}. #{isl.island_name}."
+    puts "#{id}. #{isl.name}."
     puts "Population: #{isl.population}"
     puts "Language spoken: #{isl.language_spoken}"
     puts "The average rent for a one bedroom apartment: #{average_rent}"

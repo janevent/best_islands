@@ -11,24 +11,26 @@ class Scraper
     last_island = nil
     lis = scrape_page.css("#article-body > li")
     lis.each do |li|
-      binding.pry
+      
     
       if li.css(".caption span").length > 0 
         
         last_island = Island.new(li.css(".caption span").first.text)
       elsif li.text.include?("Population:")
+      
         li.css(".list li").each do |fact|
+          
           if fact.text.include?("Population")
             
-            island.population = fact.text.split(": ")[1]
+            last_island.population = fact.text.split(": ")[1]
           elsif fact.text.include?("Language")
-            island.language = fact.text.split(": ")[1]
+            last_island.language_spoken = fact.text.split(": ")[1]
           elsif fact.text.include?("rent")
-            island.average_rent = fact.text.split(": ")[1]
+            last_island.average_rent = fact.text.split(": ")[1]
           elsif fact.text.include?("home")
-            island.home_price = fact.text.split(": ")[1]
+            last_island.home_price = fact.text.split(": ")[1]
           elsif fact.text.include?("milk")
-            island.cost_of_milk = fact.text.split(": ")[1]
+            last_island.cost_of_milk = fact.text.split(": ")[1]
           end
           
         end
