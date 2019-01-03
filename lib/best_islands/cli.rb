@@ -1,5 +1,6 @@
 class CLI 
   def call
+    Scraper.scrape_island_attributes
     greeting
   end 
   

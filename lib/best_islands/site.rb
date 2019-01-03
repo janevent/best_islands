@@ -1,7 +1,7 @@
 class Island
-  attr_accessor :island_name, :population, :language_spoken, :average_rent, :home_price, :cost_of_milk
+  attr_accessor :name, :population, :language_spoken, :average_rent, :home_price, :cost_of_milk
   
-  def initialize 
+  def initialize(name = nil) 
     @@all << self
   end
   
