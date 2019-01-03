@@ -8,19 +8,24 @@ class CLI
     input = nil 
     while input != "exit"
       puts "Welcome to 'The Top Best Islands To Live On'."
+      puts ""
       puts "If you would like to see a list of 'The Top Best Islands To Live On' type 'islands'."
       if input == "islands"
         list_island_names 
       end
+      puts ""
       puts  "If you would like to see a list of facts about an island type the island id number."
       if input.to_i > 0 && input.to_i < Island.all.length
         list_island_facts(input)
       end
+      puts ""
       puts "If you would like to view the disclaimer type 'disclaimer'."
       if input == "disclaimer"
         disclaimer 
       end
+      puts ""
       puts "If you would like to exit, type 'exit'."
+      puts ""
       input = gets.chomp
     end
   end
@@ -32,13 +37,15 @@ class CLI
   end
   
   def list_island_facts(id)
-    isl = Island.all[id.to_i -1]
+    isl = Island.all[id.to_i - 1]
+    puts ""
     puts "#{id}. #{isl.name}."
-    puts "Population: #{isl.population}"
-    puts "Language spoken: #{isl.language_spoken}"
-    puts "The average rent for a one bedroom apartment: #{average_rent}"
-    puts "The starting price for a home: #{isl.home_price}"
-    puts "The cost of a gallon of milk: #{isl.cost_of_milk}"
+    puts ""
+    puts "  Population: #{isl.population}"
+    puts "  Language spoken: #{isl.language_spoken}"
+    puts "  The average rent for a one bedroom apartment: #{isl.average_rent}"
+    puts "  The starting price for a home: #{isl.home_price}"
+    puts "  The cost of a gallon of milk: #{isl.cost_of_milk}"
   end
   
   def disclaimer
