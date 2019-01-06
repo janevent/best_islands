@@ -22,7 +22,7 @@ class Scraper
         if paragraph_array.length == 2 
           paragraph_array.clear
         end
-        binding.pry
+        
         #last_island.paragraph_1 = li.css(".paragraph").text
         #last_island.paragraph_2 = li.css(".paragraph").text
       #elsif last_island.paragraph_1.length > 1 && li.css(".paragraph").length > 0
