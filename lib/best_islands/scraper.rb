@@ -11,8 +11,15 @@ class Scraper
     last_island = nil
     lis = scrape_page.css("#article-body > li")
     lis.each do |li|
+     # binding.pry
       if li.css(".caption span").length > 0 
         last_island = Island.new(li.css(".caption span").first.text)
+      elsif last_island != nil && li.css(".paragraph").length > 0
+        last_island.paragraph_1 = li.css(".paragraph").text
+        last_island.paragraph_2 = li.css(".paragraph").text
+      binding.pry
+      #elsif last_island.paragraph_1.length > 1 && li.css(".paragraph").length > 0
+        #last_island.paragraph_2 = li.css(".paragraph")
       elsif li.text.include?("Population:")
         li.css(".list li").each do |fact|
           if fact.text.include?("Population")
