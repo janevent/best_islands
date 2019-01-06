@@ -10,14 +10,21 @@ class Scraper
   def self.scrape_island_attributes
     last_island = nil
     lis = scrape_page.css("#article-body > li")
+    paragraph_array = []
     lis.each do |li|
      # binding.pry
       if li.css(".caption span").length > 0 
         last_island = Island.new(li.css(".caption span").first.text)
       elsif last_island != nil && li.css(".paragraph").length > 0
-        last_island.paragraph_1 = li.css(".paragraph").text
-        last_island.paragraph_2 = li.css(".paragraph").text
-      binding.pry
+        paragraph_array << li.css(".paragraph").text
+        last_island.paragraph_1 = paragraph_array[0]
+        last_island.paragraph_2 = paragraph_array[1]
+        if paragraph_array.length == 2 
+          paragraph_array.clear
+        end
+        binding.pry
+        #last_island.paragraph_1 = li.css(".paragraph").text
+        #last_island.paragraph_2 = li.css(".paragraph").text
       #elsif last_island.paragraph_1.length > 1 && li.css(".paragraph").length > 0
         #last_island.paragraph_2 = li.css(".paragraph")
       elsif li.text.include?("Population:")
