@@ -1,6 +1,7 @@
 class CLI 
   def call
     Scraper.scrape_island_attributes
+    Scraper.scrape_for_disclaimer
     greeting
   end 
   
@@ -11,19 +12,23 @@ class CLI
       puts ""
       puts "If you would like to see a list of 'The Top Best Islands To Live On' type 'islands'."
       if input == "islands"
+        puts ""
         list_island_names 
       end
       puts ""
       puts  "If you would like to see a list of facts about an island type the island id number."
-      if input.to_i > 0 && input.to_i < Island.all.length
+      if input.to_i > 0 && input.to_i <= Island.all.length
+        puts ""
         list_island_facts(input)
       end
       puts ""
       puts "If you would to read about an island, type 'description' followed by the island id number."
-      #if input.split[0] == "description" && input.split[1].to_i > 0 && input.split[1].to_i < Island.all.length
-       # island_description(input)
-     # end
+      if input.include?("description") # && input.split[1].to_i > 0 && input.split[1].to_i <= Island.all.length
+        island_description(input)
+      end
+     puts ""
       puts "If you would like to view the disclaimer type 'disclaimer'."
+      puts ""
       if input == "disclaimer"
         disclaimer 
       end
@@ -63,13 +68,13 @@ class CLI
   
   def island_description(input)
     id = input.split[1].to_i
-    isl = Island.all[id]
+    isl = Island.all[id - 1]
     puts "#{isl.paragraph_1}"
     puts "#{isl.paragraph_2}"
   end
   
-  # def disclaimer
-  #   Scraper.scrape_for_disclaimer 
-  # end
+  def disclaimer
+    puts "  #{Scraper.scrape_for_disclaimer}"
+  end
     
 end

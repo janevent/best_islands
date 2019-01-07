@@ -1,5 +1,5 @@
 class Island
-  attr_accessor :name, :population, :language_spoken, :average_rent, :home_price, :cost_of_milk, :currency, :temp, :paragraph_1, :paragraph_2
+  attr_accessor :name, :population, :language_spoken, :average_rent, :home_price, :cost_of_milk, :currency, :temp, :paragraph_1, :paragraph_2, :disclaimer
   
   def initialize(name = nil) 
     @name = name

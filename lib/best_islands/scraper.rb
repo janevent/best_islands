@@ -10,12 +10,13 @@ class Scraper
   def self.scrape_island_attributes
     last_island = nil
     lis = scrape_page.css("#article-body > li")
+    
     paragraph_array = []
     lis.each do |li|
      # binding.pry
       if li.css(".caption span").length > 0 
         last_island = Island.new(li.css(".caption span").first.text)
-      elsif last_island != nil && li.css(".paragraph").length > 0
+      elsif last_island != nil && li.css(".paragraph").length > 0  && li.css(".paragraph").text.include?("Real Estate Tips") == false && li.css(".paragraph").text.include?("Red Frog") == false
         paragraph_array << li.css(".paragraph").text
         last_island.paragraph_1 = paragraph_array[0]
         last_island.paragraph_2 = paragraph_array[1]
@@ -46,11 +47,12 @@ class Scraper
           end
         end
       end
+      
     end
   end
 
   def self.scrape_for_disclaimer
-    scrape_page.css("em").text
+    scrape_page.css("#article-body > li").first.text
   end
   
 end
