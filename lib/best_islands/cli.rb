@@ -50,6 +50,12 @@ class CLI
     puts "  The average rent for a one bedroom apartment: #{isl.average_rent}"
     puts "  The starting price for a home: #{isl.home_price}"
     puts "  The cost of a gallon of milk: #{isl.cost_of_milk}"
+    if isl.currency  
+      puts "  Currency: #{isl.currency}"
+    end
+    if isl.temp 
+      puts "  Average year-round temp: #{isl.temp}"
+    end
     puts ""
     puts "#{isl.paragraph_1}"
     puts "#{isl.paragraph_2}"

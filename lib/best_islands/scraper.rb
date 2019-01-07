@@ -33,6 +33,10 @@ class Scraper
             last_island.population = fact.text.split(": ")[1]
           elsif fact.text.include?("Language")
             last_island.language_spoken = fact.text.split(": ")[1]
+          elsif fact.text.include?("Currency")
+            last_island.currency = fact.text.split(": ")[1]
+          elsif fact.text.include?("temp")
+            last_island.temp = fact.text.split(": ")[1]
           elsif fact.text.include?("rent")
             last_island.average_rent = fact.text.split(": ")[1]
           elsif fact.text.include?("home")
