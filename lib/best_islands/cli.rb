@@ -11,31 +11,35 @@ class CLI
       puts "Welcome to 'The Top Best Islands To Live On'."
       puts ""
       puts "If you would like to see a list of 'The Top Best Islands To Live On' type 'islands'."
-      if input == "islands"
-        puts ""
-        list_island_names 
-      end
       puts ""
       puts  "If you would like to see a list of facts about an island type the island id number."
-      if input.to_i > 0 && input.to_i <= Island.all.length
-        puts ""
-        list_island_facts(input)
-      end
       puts ""
       puts "If you would to read about an island, type 'description' followed by the island id number."
-      if input.include?("description") # && input.split[1].to_i > 0 && input.split[1].to_i <= Island.all.length
-        island_description(input)
-      end
-     puts ""
-      puts "If you would like to view the disclaimer type 'disclaimer'."
+      #if input.include?("description") # && input.split[1].to_i > 0 && input.split[1].to_i <= Island.all.length
+       # island_description(input)
+      #end
       puts ""
-      if input == "disclaimer"
-        disclaimer 
-      end
+      puts "If you would like to view the disclaimer type 'disclaimer'."
       puts ""
       puts "If you would like to exit, type 'exit'."
       puts ""
       input = gets.chomp
+      if input == "islands"
+        puts ""
+        list_island_names 
+      end
+      if input.include?("description")
+        puts ""
+        island_description(input)
+      end
+      if input.to_i > 0 && input.to_i <= Island.all.length
+        puts ""
+        list_island_facts(input)
+      end
+      if input == "disclaimer"
+        puts ""
+        disclaimer 
+      end
     end
   end
   
@@ -62,19 +66,23 @@ class CLI
       puts "  Average year-round temp: #{isl.temp}"
     end
     puts ""
-    puts "#{isl.paragraph_1}"
-    puts "#{isl.paragraph_2}"
+    #puts "#{isl.paragraph_1}"
+    #puts "#{isl.paragraph_2}"
   end
   
   def island_description(input)
     id = input.split[1].to_i
     isl = Island.all[id - 1]
-    puts "#{isl.paragraph_1}"
-    puts "#{isl.paragraph_2}"
+    puts "  #{id}. #{isl.name}"
+    puts ""
+    puts "  #{isl.paragraph_1}"
+    puts "  #{isl.paragraph_2}"
+    puts ""
   end
   
   def disclaimer
     puts "  #{Scraper.scrape_for_disclaimer}"
+    puts ""
   end
     
 end
