@@ -6,12 +6,13 @@ class Scraper
     # html = open("https://www.islands.com/top-20-best-islands-to-live-on/")
     # @doc = Nokogiri::HTML(html)
     @browser = CapybaraScraper::Browser.new.visit("https://www.islands.com/top-20-best-islands-to-live-on/")
+    @browser.page.find("#article-body")
   end
   
   def self.scrape_island_attributes
-    lis = @browser.page.find("#article-body > li") 
+    # lis = @browser.page.find("#article-body > li") 
     last_island = nil
-    # lis = scrape_page.css("#article-body > li")
+    lis = scrape_page.css("> li")
     
     paragraph_array = []
     lis.each do |li|

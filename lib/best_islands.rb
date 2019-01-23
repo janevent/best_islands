@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'nokogiri'
+require 'capybara'
 require 'pry'
 
 require_relative "best_islands/version"
