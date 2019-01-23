@@ -3,13 +3,15 @@ require 'pry'
 class Scraper
   
   def self.scrape_page
-    html = open("https://www.islands.com/top-20-best-islands-to-live-on/")
-    @doc = Nokogiri::HTML(html)
+    # html = open("https://www.islands.com/top-20-best-islands-to-live-on/")
+    # @doc = Nokogiri::HTML(html)
+    @browser = CapybaraScraper::Browser.new.visit("https://www.islands.com/top-20-best-islands-to-live-on/")
   end
   
   def self.scrape_island_attributes
+    lis = @browser.page.find("#article-body > li") 
     last_island = nil
-    lis = scrape_page.css("#article-body > li")
+    # lis = scrape_page.css("#article-body > li")
     
     paragraph_array = []
     lis.each do |li|
@@ -52,7 +54,7 @@ class Scraper
   end
 
   def self.scrape_for_disclaimer
-    scrape_page.css("#article-body > li").first.text
+    @browser.find.page("#article-body > li").first.text
   end
   
 end
