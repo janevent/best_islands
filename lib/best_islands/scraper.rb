@@ -15,36 +15,35 @@ class Scraper
 
       if island.css("ul").length > 0
         isl = Island.new
-        binding.pry
+
         isl.name = island.css("h2").text.split(": ")[1]
         isl.paragraphs = island.css("p").map do |p|
           p.text
         end.join
+        island.css("li").map do |li|
+          #binding.pry
+          if li.text.include?("Population")
+            isl.population = li.text.split(": ")[1]
+          elsif li.text.include?("Language")
+            isl.language_spoken = li.text.split(": ")[1]
+          elsif li.text.include?("Currency")
+            isl.currency = li.text.split(": ")[1]
+          elsif li.text.include?("temp")
+            isl.average_rent = li.text.split(": ")[1]
+          elsif li.text.include?("rent")
+            isl.temp = li.text.split(": ")[1]
+          elsif li.text.include?("home")
+            isl.home_price = li.text.split(": ")[1]
+          elsif li.text.include?("milk")
+            isl.cost_of_milk = li.text.split(": ")[1]
+          end
 
+        end
       end
     end
 
 
 
-      # if li.text.include?("Population:")
-      #   li.css(".list li").each do |fact|
-      #     if fact.text.include?("Population")
-      #       last_island.population = fact.text.split(": ")[1]
-      #     elsif fact.text.include?("Language")
-      #       last_island.language_spoken = fact.text.split(": ")[1]
-      #     elsif fact.text.include?("Currency")
-      #       last_island.currency = fact.text.split(": ")[1]
-      #     elsif fact.text.include?("temp")
-      #       last_island.temp = fact.text.split(": ")[1]
-      #     elsif fact.text.include?("rent")
-      #       last_island.average_rent = fact.text.split(": ")[1]
-      #     elsif fact.text.include?("home")
-      #       last_island.home_price = fact.text.split(": ")[1]
-      #     elsif fact.text.include?("milk")
-      #       last_island.cost_of_milk = fact.text.split(": ")[1]
-      #     end
-      #   end
-      # end
   end
 
 end
