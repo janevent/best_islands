@@ -1,12 +1,11 @@
-class CLI 
+class CLI
   def call
     Scraper.scrape_island_attributes
-    Scraper.scrape_for_disclaimer
     greeting
-  end 
-  
+  end
+
   def greeting
-    input = nil 
+    input = nil
     while input != "exit"
       puts "Welcome to 'The Top Best Islands To Live On'."
       puts ""
@@ -26,7 +25,7 @@ class CLI
       input = gets.chomp
       if input == "islands"
         puts ""
-        list_island_names 
+        list_island_names
       end
       if input.include?("description")
         puts ""
@@ -38,17 +37,17 @@ class CLI
       end
       if input == "disclaimer"
         puts ""
-        disclaimer 
+        disclaimer
       end
     end
   end
-  
+
   def list_island_names
     Island.all.each_with_index do |island, index|
       puts "#{index + 1}. #{island.name}"
     end
   end
-  
+
   def list_island_facts(id)
     isl = Island.all[id.to_i - 1]
     puts ""
@@ -59,17 +58,17 @@ class CLI
     puts "  The average rent for a one bedroom apartment: #{isl.average_rent}"
     puts "  The starting price for a home: #{isl.home_price}"
     puts "  The cost of a gallon of milk: #{isl.cost_of_milk}"
-    if isl.currency  
+    if isl.currency
       puts "  Currency: #{isl.currency}"
     end
-    if isl.temp 
+    if isl.temp
       puts "  Average year-round temp: #{isl.temp}"
     end
     puts ""
     #puts "#{isl.paragraph_1}"
     #puts "#{isl.paragraph_2}"
   end
-  
+
   def island_description(input)
     id = input.split[1].to_i
     isl = Island.all[id - 1]
@@ -79,10 +78,10 @@ class CLI
     puts "  #{isl.paragraph_2}"
     puts ""
   end
-  
+
   def disclaimer
     puts "  #{Scraper.scrape_for_disclaimer}"
     puts ""
   end
-    
+
 end
