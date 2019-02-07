@@ -74,8 +74,7 @@ class CLI
     isl = Island.all[id - 1]
     puts "  #{id}. #{isl.name}"
     puts ""
-    puts "  #{isl.paragraph_1}"
-    puts "  #{isl.paragraph_2}"
+    puts "  #{isl.paragraphs}"
     puts ""
   end
 

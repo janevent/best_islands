@@ -29,9 +29,9 @@ class Scraper
           elsif li.text.include?("Currency")
             isl.currency = li.text.split(": ")[1]
           elsif li.text.include?("temp")
-            isl.average_rent = li.text.split(": ")[1]
-          elsif li.text.include?("rent")
             isl.temp = li.text.split(": ")[1]
+          elsif li.text.include?("rent")
+            isl.average_rent = li.text.split(": ")[1]
           elsif li.text.include?("home")
             isl.home_price = li.text.split(": ")[1]
           elsif li.text.include?("milk")
