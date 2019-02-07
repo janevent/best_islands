@@ -11,6 +11,8 @@ class Scraper
 
   def self.scrape_island_attributes
     container = scrape_page.css(".field-sir-trevor-body")
+
+    #container.css("p").first.text to get disclaimer
     container.css(".markdown").each do |island|
 
       if island.css("ul").length > 0
@@ -21,7 +23,6 @@ class Scraper
           p.text
         end.join
         island.css("li").map do |li|
-          #binding.pry
           if li.text.include?("Population")
             isl.population = li.text.split(": ")[1]
           elsif li.text.include?("Language")
@@ -37,13 +38,13 @@ class Scraper
           elsif li.text.include?("milk")
             isl.cost_of_milk = li.text.split(": ")[1]
           end
-
         end
       end
     end
+  end
 
-
-
+  def self.scrape_for_disclaimer
+    scrape_page.css(".field-sir-trevor-body p").first.text
   end
 
 end

@@ -12,6 +12,10 @@ class Island
     @@all
   end
 
+  def self.disclaimer
+    Scraper.scrape_for_disclaimer
+  end
+
   def self.find(id)
     self.all[id.to_i -1]
   end

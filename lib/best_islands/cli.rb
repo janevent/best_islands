@@ -1,6 +1,7 @@
 class CLI
   def call
     Scraper.scrape_island_attributes
+    Scraper.scrape_for_disclaimer
     greeting
   end
 
@@ -64,9 +65,7 @@ class CLI
     if isl.temp
       puts "  Average year-round temp: #{isl.temp}"
     end
-    puts ""
-    #puts "#{isl.paragraph_1}"
-    #puts "#{isl.paragraph_2}"
+    puts "
   end
 
   def island_description(input)
@@ -79,7 +78,7 @@ class CLI
   end
 
   def disclaimer
-    puts "  #{Scraper.scrape_for_disclaimer}"
+    puts "  #{Island.disclaimer}"
     puts ""
   end
 
