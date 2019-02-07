@@ -21,7 +21,7 @@ class Scraper
         isl.name = island.css("h2").text.split(": ")[1]
         isl.paragraphs = island.css("p").map do |p|
           p.text
-        end.join
+        end.join("\n")
         island.css("li").map do |li|
           if li.text.include?("Population")
             isl.population = li.text.split(": ")[1]
