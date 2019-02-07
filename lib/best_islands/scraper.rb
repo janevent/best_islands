@@ -12,11 +12,11 @@ class Scraper
   def self.scrape_island_attributes
     container = scrape_page.css(".field-sir-trevor-body")
     container.css(".markdown").each do |island|
-      binding.pry
+
       if island.css("ul").length > 0
         isl = Island.new
-        binding.pry
-        isl.name = island.css("h2")
+
+        isl.name = island.css("h2").split(": ")[1]
       end
     end
 
