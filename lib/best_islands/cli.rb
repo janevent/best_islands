@@ -13,8 +13,6 @@ class CLI
       puts "If you would like to see a list of 'The Top Best Islands To Live On' type 'islands'."
       puts ""
       puts  "If you would like to see a list of facts about an island type the island id number."
-      puts ""
-      puts "If you would to read about an island, type 'description' followed by the island id number."
       #if input.include?("description") # && input.split[1].to_i > 0 && input.split[1].to_i <= Island.all.length
        # island_description(input)
       #end
@@ -27,10 +25,6 @@ class CLI
       if input == "islands"
         puts ""
         list_island_names
-      end
-      if input.include?("description")
-        puts ""
-        island_description(input)
       end
       if input.to_i > 0 && input.to_i <= Island.all.length
         puts ""
@@ -65,12 +59,16 @@ class CLI
     if isl.temp
       puts "  Average year-round temp: #{isl.temp}"
     end
-    puts "
+    puts ""
+    puts "If you would like to read more about this island type y/n"
+    input = gets.chomp
+    if input == "y"
+      island_description(id)
+    end
   end
 
-  def island_description(input)
-    id = input.split[1].to_i
-    isl = Island.all[id - 1]
+  def island_description(id)
+    isl = Island.all[id.to_i - 1]
     puts "  #{id}. #{isl.name}"
     puts ""
     puts "  #{isl.paragraphs}"
